@@ -119,7 +119,7 @@
     });
 
     $(Screw).trigger('before');
-    var to_run = unescape(location.search.slice(1)) || 'body > .describe > .describes > .describe';
+    var to_run = unescape(location.search.slice(1).split("&")[0]) || 'body > .describe > .describes > .describe';
     $(to_run)
       .focus()
       .eq(0).trigger('scroll').end()
