@@ -1,5 +1,6 @@
 Screw.Unit(function() {
   describe("SpatialMap", function() {
+    var SpatialMap = activetile.SpatialMap;
     describe("initialization", function() {
       it("should allow to set cell size", function() {
         var map = new SpatialMap({cellSize: 10});
