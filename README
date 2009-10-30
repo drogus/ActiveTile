@@ -1,4 +1,4 @@
-ActiveTile is project that is aiming to implement client side part of displaying many more dots on the map. It aims to be similar to google maps' implementation: http://google-latlong.blogspot.com/2009/02/1000-is-new-10.html
+ActiveTile is project that aims to implement client side part of displaying many more dots on the map. It aims to be similar to google maps' implementation: http://google-latlong.blogspot.com/2009/02/1000-is-new-10.html
 
 All of the scripts are written for google maps API v3, but porting it to older version is possible.
 
