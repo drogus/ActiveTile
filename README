@@ -1,15 +1,14 @@
 ActiveTile is project that aims to implement client side part of displaying many more dots on the map. It aims to be similar to google maps' implementation: http://google-latlong.blogspot.com/2009/02/1000-is-new-10.html
 
-All of the scripts are written for google maps API v3, but porting it to older version is possible.
+All of the scripts are written for google maps API v3, but porting it to older version is possible. ActiveTile was tested only on firefox 3.5.
 
 The method of displaying such number of points is fairly simple. On the server side you must generate images with dots and display it on client side with ActiveTile.
-
 
 === Usage
 
 First of all you need to add new tiles to the map.
 
-    dotsMap = new activetile.DataMap({
+    var dotsMap = new activetile.DataMap({
       tilesUrl: "/tile", 
       map: map
     });
@@ -19,22 +18,22 @@ The url for tiles is set to "/tile", so all the tiles will be fetched from that 
 
 where lat1, lat2 and lng1, lng2 are bounds of the tile and zoom is current zoom. With that data you can generate images with points placed on given tile.
 
+Images can be generated with <a href="http://github.com/314Technologies/dotter">Dotter</a>. Dotter is written in ruby. If you are using any other language you will have to roll your own tool.
+
 Once you add this code you can do:
     dotsMap.showTiles()
 to display tiles over the map and attach event listeners that will automatically load new tiles on drag or zoom.
 
-To disable tiles just:
+To disable tiles:
     dotsMap.removeTiles();
 
 It will remove all tiles from the map and remove all event listeners.
 
-This tiles provide information about where the dots are, but there is no information about each dot. This is the moment that ActivityLayer is needed. ActivityLayer can add interaction to your tiles, so that there is possibility to display info about each dot on hover or click.
+This images provide information about where the dots are, but there is no information about each dot (ie. you can't tell if mouse is over the dot). This is the moment when ActivityLayer is needed. ActivityLayer can add interaction to your tiles, so that there is possibility to display info about each dot on hover or click.
 
 Here is actual implementation of adding activityLayer to the map:
 
-var tooltip = $('<div class="dotTooltip"></div>').hide().appendTo(document.body);
-
-    activityLayer = new ActivityLayer({
+    var activityLayer = new ActivityLayer({
       map: map, 
       mouseOverPoint: function(self, point, center) {
         // mouse is over dot
@@ -62,3 +61,8 @@ onTilesReload is called whenever all the tiles are removed or changed (e.g. zoom
   activityLayer.clearPoints();
 
 onTileLoad is called after creating and loading new tile. To ensure that each of the dots displayed on the tile are interactive we must add them to activityLayer.
+
+=== Todo
+
+* add more specs
+* project was tested only on firefox 3.5
